@@ -58,15 +58,15 @@ jobs:
           name: win-x64-source
           path: bin\Packages\Release\*.nupkg
 
-      - name: Publish untagged source package to MyGet
+      - name: Publish untagged source package to asojidev's nuget
         if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && matrix.architecture == 'x64'
-        run: dotnet nuget push bin\Packages\Release\*.nupkg -s https://www.myget.org/F/mellinoe/api/v3/index.json --api-key ${{secrets.MYGET_KEY}}
+        run: dotnet nuget push bin\Packages\Release\*.nupkg -s https://nuget.asoji.gay/v3/index.json --api-key ${{secrets.ASOJIDEV_NUGET_KEY}}
         # error can be fixed afterwards and job can be re-triggered
         continue-on-error: true
 
-      - name: Publish tagged source package release to nuget.org
+      - name: Publish tagged source package release to asojidev's nuget [maybe change this to Tricky Tanuki Studios' nuget if i ever make one for em]
         if: matrix.os == 'windows-latest' && startsWith(github.ref, 'refs/tags/') && matrix.architecture == 'x64'
-        run: dotnet nuget push bin\Packages\Release\*.nupkg -s https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_KEY}}
+        run: dotnet nuget push bin\Packages\Release\*.nupkg -s https://nuget.asoji.gay/v3/index.json --api-key ${{secrets.ASOJIDEV_NUGET_KEY}}
         # error can be fixed afterwards and job can be re-triggered
         continue-on-error: true
 
