@@ -60,7 +60,7 @@ jobs:
 
       - name: Publish untagged source package to MyGet
         if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && matrix.architecture == 'x64'
-        run: dotnet nuget push bin\Packages\Release\*.nupkg -s https://www.myget.org/F/mellinoe/api/v3/index.json --api-key ${{secrets.MYGET_KEY}}
+        run: dotnet nuget push bin\Packages\Release\*.nupkg -s https://nuget.asoji.gay/v3/index.json --api-key ${{secrets.ASOJIDEV_NUGET_KEY}}
         # error can be fixed afterwards and job can be re-triggered
         continue-on-error: true
 
